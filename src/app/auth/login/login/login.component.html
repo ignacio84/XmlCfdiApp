@@ -1,36 +1,22 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
-      </mat-card-header>
-  
-      <form class="example-form">
-  
-        <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email">
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <mat-label>Choose designation</mat-label>
-            <!-- <mat-select>
-              <mat-option [value]="user" *ngFor="let user of User">{{user}}
-              </mat-option>
-            </mat-select> -->
-          </mat-form-field>
-  
-        </mat-card-content>
-  
-        <button mat-stroked-button color="accent" class="btn-block">Register</button>
-  
-      </form>
-    </mat-card>
-  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <p-card fxLayout="row">
+    <ng-template class="p-5" pTemplate="header">
+      <strong>INGRESAR</strong>
+    </ng-template>
+    <div class="field">
+      <label for="firstname1">Usuario</label>
+      <input id="firstname1" type="text" formControlName="usuario" autocomplete="off"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field">
+      <label for="lastname1">Contraseña</label>
+      <input id="lastname1" type="password" formControlName="password" autocomplete="off"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <ng-template pTemplate="footer">
+      <button pButton type="submit" class="p-button-raised p-button-rounded" label="ACEPTAR" [disabled]="loginForm.invalid"></button>
+    </ng-template>
+  </p-card>
+  </form>
+</div>

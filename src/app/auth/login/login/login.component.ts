@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatCardModule} from '@angular/material/card';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,22 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  // public loginForm: FormGroup = this.fb.group({
+  //   usuario: [  this.authService.userLocalStorage?.usuario || '', [Validators.required, Validators.minLength(4)]],
+  //   password: ['', [Validators.required]],
+  //   recordar: [this.authService.userLocalStorage ? true : false, Validators.required]
+  // });
+
+  public loginForm: FormGroup = this.fb.group({
+    usuario: [ '', [Validators.required, Validators.minLength(4)]],
+    password: ['', [Validators.required]],
+  });
+
+  constructor(private router: Router,private fb: FormBuilder) { }
+
+  submit() {
+    console.log('scope is', this.loginForm.value)
+  }
 
   ngOnInit(): void {
   }

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthRoutingModule } from './auth/auth-routing.module';
-
+import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
 
@@ -17,11 +16,11 @@ const routes: Routes = [
   //{ path: '**', redirectTo: '404' },
 ]
 
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
     AuthRoutingModule,
+    AuthModule,
   ],
   exports: [
     RouterModule

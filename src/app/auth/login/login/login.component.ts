@@ -5,6 +5,9 @@ import { CryptService } from 'src/app/etc/crypt.service';
 import { LoginService } from '../../auth-services/login.service';
 import { StorageService } from '../../../etc/storage.service';
 import { environment } from 'src/environments/environment';
+import { ParseService } from '../../../etc/parse.service';
+import { Observable, Subscription } from 'rxjs';
+
 const TOKEN = environment.TOKEN;
 const USR = environment.USR;
 
@@ -14,6 +17,8 @@ const USR = environment.USR;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  private login$?:Subscription
 
   // public loginForm: FormGroup = this.fb.group({
   //   usuario: [  this.authService.userLocalStorage?.usuario || '', [Validators.required, Validators.minLength(4)]],
@@ -29,21 +34,36 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private fb: FormBuilder,
     private loginService: LoginService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private parseService:ParseService
   ) { }
 
   submit() {
-    this.loginService.login(this.loginForm.value)
+    this.login$= this.loginService.login(this.loginForm.value)
       .subscribe(resp => {
-        console.log("resp.AccessToken : ", resp.AccessToken);
-        this.storageService.saveInSession(TOKEN,resp.AccessToken);
-        this.storageService.saveInSession(USR,this.loginForm.controls['username'].value);
-        console.log("TOKEN : ",this.storageService.getInSession(TOKEN));
-        console.log("USR : ",this.storageService.getInSession(USR));
+        this.save(resp);
       }, err => console.log(err));
   }
 
+  private save(resp: any) {
+    console.log("resp.AccessToken : ", resp.AccessToken);
+    this.storageService.saveInSession(TOKEN, resp.AccessToken);
+    this.storageService.saveInSession(USR, this.loginForm.controls['username'].value);
+    console.log("TOKEN : ", this.storageService.getInSession(TOKEN));
+    console.log("USR : ", this.storageService.getInSession(USR));
+
+  }
+
+
+
   ngOnInit(): void {
+    
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy')
+    this.loginForm.reset();
+    this.login$?.unsubscribe();
   }
 
 }

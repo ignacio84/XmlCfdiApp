@@ -29,26 +29,43 @@ body {
 }
 
 
+
 @media (min-width: 200px) {
-	:host ::ng-deep .main-wrapper {
+	/* :host ::ng-deep .main-wrapper {
 		margin-top: 40px;
-	}
+	} */
 
 	:host ::ng-deep .p-card {
 		width: 300px;
 	}
 }
 
-@media (min-width: 600px) {
-	:host ::ng-deep .main-wrapper {
+ @media (min-width: 600px) {
+	/* :host ::ng-deep .main-wrapper {
 		margin-top: 80px;
-	}
+	} */
 
 	:host ::ng-deep .p-card {
 		width: 400px;
 	}
-
 }
+
+@media (min-height: 500px) {
+	:host ::ng-deep .main-wrapper {
+		margin-top: 50px;
+	} 
+}
+
+
+@media (min-height: 600px) {
+	:host ::ng-deep .main-wrapper {
+		margin-top: 100px;
+	} 
+}
+
+
+
+/*
 
 
 @media (min-width: 1000px) {
@@ -56,9 +73,7 @@ body {
 		margin-top: 100px;
 	}
 
-	/* :host ::ng-deep .p-card .p-card-body {
-		background-color: rgb(241, 6, 6);
-	} */
+
 }
 
 
@@ -66,18 +81,10 @@ body {
 	:host ::ng-deep .main-wrapper {
 		margin-top: 150px;
 	}
-
-	/* :host ::ng-deep .p-card .p-card-body {
-		background-color: rgb(2, 238, 226);
-	} */
 }
 
 @media (min-width: 2000px) {
 	:host ::ng-deep .main-wrapper {
 		margin-top: 180px;
-	}
-
-	/* :host ::ng-deep .p-card .p-card-body {
-			background-color: blue;
-		} */
-}
+	} 
+}*/
